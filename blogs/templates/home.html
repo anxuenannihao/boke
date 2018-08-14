@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}
+    欢迎光临我的博客
+{% endblock %}
+
+
+//主体
+{% block left %}
+    <div id="main">
+    {% for post in postlist %}
+      <article class="article article-type-post">
+            <div class="article-meta">
+                <a class="article-date">
+                    <time>{{ post.creatime|date:'Y-m-d '}}</time>
+                </a>
+                <div class="article-category">
+                    <a class="article-category-link"href="#"  target="_blank">{{ post.category.cname }}</a>
+                </div>
+            </div>
+            <div class="article-inner">
+                <header class="article-header">
+                    <h1 itemprop="name">
+                        <a class="article-title" href="#" target="_blank">{{ post.title }}</a>
+                    </h1>
+                </header>
+                <div class="article-entry" itemprop="articleBody">
+                    <h2>前言</h2>
+                    <hr>
+                   {{ post.desc }}
+
+
+                    <p class="article-more-link">
+                        <a href="/post/{{ post.id }}" target="_blank">阅读全文</a>
+                    </p>
+                </div>
+                <footer class="article-footer">
+                    <a data-url="存放文章的url" class="article-share-link">分享</a>
+                    <ul class="article-tag-list">
+                    {% for t in post.tags.all %}
+                                <li class="article-tag-list-item">
+                                    <a class="article-tag-list-link" href="#">{{ t.tname }}</a>
+                                </li>
+                    {% endfor %}
+
+
+                    </ul>
+                </footer>
+            </div>
+        </article>
+    {% endfor %}
+
+        <nav id="page-nav">
+
+                    <span class="page-number current">1</span>
+
+                    <a class="page-number" href="/page/2">2</a>
+
+                    <a class="page-number" href="/page/3">3</a>
+
+                    <a class="page-number" href="/page/4">4</a>
+
+                    <a class="page-number" href="/page/5">5</a>
+
+                    <a class="page-number" href="/page/6">6</a>
+
+                    <a class="page-number" href="/page/7">7</a>
+
+                    <a class="page-number" href="/page/8">8</a>
+
+                    <a class="extend next" rel="next" href="/page/2">Next »</a>
+
+
+        </nav>
+
+    </div>
+{% endblock %}
